@@ -6,7 +6,10 @@ var {PythonShell} = require('python-shell');
 
 // tweet index
 tweets.get('/', (req, res, next) => {
-    let handle = req.params.handle;
+    Handle.findOne({name: req.params.handle}).populate('tweets')
+        .then( tweets => {
+            res.send(tweets);
+        })
 });
 
 //Generate new tweet from handle
