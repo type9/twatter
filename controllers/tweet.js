@@ -4,7 +4,7 @@ const tweets = require('express').Router({mergeParams: true});
 
 var {PythonShell} = require('python-shell');
 
-// tweet index
+//Tweet index
 tweets.get('/', (req, res, next) => {
     Handle.findOne({name: req.params.handle}).populate('tweets')
         .then( tweets => {

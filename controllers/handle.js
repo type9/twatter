@@ -4,7 +4,10 @@ const tweets = require('./tweet');
 
 //Handle index
 handles.get('/', (req, res, next) => {
-    res.statusCode(200);
+    Handle.find()
+        .then(handles => {
+            res.send(handles);
+        });
 });
 
 //Forwarding route to tweet
