@@ -2,6 +2,7 @@ import datetime as dt
 import collections
 import re
 import nltk
+nltk.download('punkt')
 import json
 
 from tuple_markovchain import MarkovChain
