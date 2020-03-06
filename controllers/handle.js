@@ -4,11 +4,12 @@ const tweets = require('./tweet');
 
 //Handle index
 handles.get('/', (req, res, next) => {
-    Handle.find()
-        .then(handles => {
-            res.status(200);
-            res.send(handles);
-        });
+    res.redirect("https://type9.github.io/twatter");
+    // Handle.find()
+    //     .then(handles => {
+    //         res.status(200);
+    //         res.send(handles);
+    //     });
 });
 
 //Forwarding route to tweet
