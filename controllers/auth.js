@@ -5,7 +5,7 @@ const apikey = require('uuid-apikey');
 
 auths.use('/newkey', (req, res, next) => {
     user = User();
-    user.key = apikey.create().apiKey;
+    user.key = apikey.create({'noDashes': true}).apiKey.toLowerCase();
     user
         .save()
         .then(user => {
