@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var TweetSchema = new Schema ({
     text: String,
-    retweeters : [{ type: Schema.Types.ObjectId, ref: "Users" }],
+    retweets : [{ type: Schema.Types.ObjectId, ref: "User" }],
     meta: {
         retweets: Number
     }

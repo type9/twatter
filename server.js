@@ -1,16 +1,13 @@
 //REQUIREMENTS
 require('dotenv').config();
 const express = require('express');
-const router = express.Router();
 const environment = process.env.NODE_ENV; // development
 const logger = require('morgan');
-const session = require('express-session')
 const hbs  = require('express-handlebars');
-const {check, validationResult} = require('express-validator');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 //Database
 require('./data/twatter-db');
@@ -36,25 +33,16 @@ if (environment !== 'production') {
     app.use(logger('dev'));
 }
 
-//AUTHENTICATION
-var checkAuth = (req, res, next) => {
-    console.log("Checking authentication");
-    if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
-      req.user = null;
-    } else {
-      var token = req.cookies.nToken;
-      var decodedToken = jwt.decode(token, { complete: true }) || {};
-      req.user = decodedToken.payload;
-    }
-  
-    next();
-  };
-// app.use(checkAuth);
-
 //CONTROLLERS
-const handleRoutes = require('./controllers/handle.js');
-const tweetRoutes = require('./controllers/tweet.js');
+const handleRoutes = require('./controllers/handle');
+const userRoutes = require('./controllers/user');
+const authRoutes = require('./controllers/auth')
 
+//these routes are for creating accounts
+app.use('/user', authRoutes);
+//these routes require valid API key
+app.use('/user', userRoutes);
+//these are primary feature routes
 app.use(handleRoutes);
 
 //LISTENER

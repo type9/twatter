@@ -29,7 +29,8 @@
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
-    "python-shell": "^1.0.8"
+    "python-shell": "^1.0.8",
+    "uuid-apikey": "^1.4.6"
   },
   "devDependencies": {
     "cross-env": "^7.0.0",

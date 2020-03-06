@@ -2,6 +2,9 @@ const Tweet = require('../models/tweet');
 const Handle = require('../models/handle');
 const tweets = require('express').Router({mergeParams: true});
 
+//
+const users = require('./user');
+
 var {PythonShell} = require('python-shell');
 
 //Tweet index
@@ -45,7 +48,7 @@ tweets.get('/generate', (req, res) => {
 
 //Specific handle's tweet
 tweets.get('/:tweetId', (req, res, next) => {
-    console.log("Specific handle route")
+    console.log("Specific handle route");
     let handle = req.handle;
     let tweetId = req.params.tweetId;
     tweet = Tweet.findById(req.params.tweetId)
@@ -57,6 +60,15 @@ tweets.get('/:tweetId', (req, res, next) => {
             }
         });
 });
+
+// tweets.get('/:tweetId/retweet', (req, res, next) => {
+//     console.log("Retweet route");
+//     tweet = Tweet.findById(req.params.tweetId)
+//         .then(tweet => {
+//             req.tweet = tweet;
+//             next();
+//         });
+// });
 
 
 module.exports = tweets;
