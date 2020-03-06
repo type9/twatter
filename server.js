@@ -52,9 +52,10 @@ app.use('/user', userRoutes);
 //these are primary feature routes '/\/user/\.*/'
 app.use(handleRoutes);
 
+const port = process.env.PORT || 3000;
 
 //LISTENER
-app.listen(3030, () => {
+app.listen(port, () => {
     console.log('Twatter listening on port localhost:3030');
 });
 
