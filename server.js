@@ -2,7 +2,6 @@
 require('dotenv').config();
 const express = require('express');
 const environment = process.env.NODE_ENV; // development
-const logger = require('morgan');
 const hbs  = require('express-handlebars');
 
 const bodyParser = require('body-parser');
