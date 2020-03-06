@@ -1,49 +1,47 @@
 const Handle = require('../models/handle');
 const handles = require('express').Router();
-const tweets = require('./tweets').Router();
+const tweets = require('./tweet');
 
 //Handle index
 handles.get('/', (req, res, next) => {
-
-});
-
-//Get all tweets under a handle
-handles.get('/:handle', (req, res, next) => {
-    handle = req.params.handle;
+    res.statusCode(200);
 });
 
 //Forwarding route to tweet
-handle.use('/:handle/twatted', (req, res, next) => {
+handles.use('/:handle/twatted', (req, res, next) => {
     Handle.findOne({name: req.params.handle})
         .then(handle => {
-            if (handle == null){
+            if (handle == null){ //handle has no tweets or doesn't exist
                 res.status(204);
             }else {
-                next(handle);
+                next();
             }
         })
 }, tweets);
 
 //Generate new tweet from handle
-handle.use('/:handle/generate', (req, res, next) => {
-
+handles.use('/:handle', (req, res, next) => {
+    console.log("Tweet generation routes")
     Handle.findOne({name: req.params.handle})
         .then(handle => {
-            if(handle !== null){ // if we already have that handle
-                req.handle = handle;
+            if(handle){ // if we already have that handle
+                console.log("Go to tweet router");
                 next();
-            } else { // if we need to make it
+            } else {
+                console.log("Make new handle");
                 newHandle = new Handle();
                 newHandle.name = req.params.handle;
-                newHandle.save()
+                newHandle
+                    .save()
                     .then(newHandle => {
-                        req.handle = newHandle;
                         next();
                     });
             }
         })
+        .catch(err => {
+            console.log(err.message);
+        });
 }, tweets);
-
 
 
 module.exports = handles;

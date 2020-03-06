@@ -52,9 +52,10 @@ var checkAuth = (req, res, next) => {
 // app.use(checkAuth);
 
 //CONTROLLERS
-// require('./controllers/auth.js')(app);
-// require('./controllers/handle.js')(app);
-require('./controllers/tweet.js')(app);
+const handleRoutes = require('./controllers/handle.js');
+const tweetRoutes = require('./controllers/tweet.js');
+
+app.use(handleRoutes);
 
 //LISTENER
 app.listen(3030, () => {
