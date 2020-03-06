@@ -1,2 +1,1 @@
-# twatter
-fake twitter for fake tweets
+[See Docsify README](docs/README.md)
