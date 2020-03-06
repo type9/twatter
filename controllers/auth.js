@@ -9,6 +9,7 @@ auths.use('/newkey', (req, res, next) => {
     user
         .save()
         .then(user => {
+            res.status(200);
             res.send(user.key);
         });
 });

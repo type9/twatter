@@ -11,14 +11,14 @@ var {PythonShell} = require('python-shell');
 tweets.get('/', (req, res, next) => {
     Handle.findOne({name: req.params.handle}).populate('tweets')
         .then( tweets => {
-            res.code(400);
+            res.status(200);
             res.send(tweets);
         })
 });
 
 //Generate new tweet from handle
 tweets.get('/generate', (req, res) => {
-    console.log(req.params);
+    console.log("Generation route")
     let gen_options = {
         mode: 'text',
         pythonOptions: ['-u'], // get print results in real-time
@@ -39,7 +39,7 @@ tweets.get('/generate', (req, res) => {
                 console.log("HANDLE: " + handle.name);
                 handle.tweets.unshift(tweet._id);
                 handle.save();
-                res.code(400);
+                res.status(201);
                 res.redirect(`/${handle.name}/twatted/${tweet._id}`);
             })
             .catch(err => {
@@ -50,13 +50,14 @@ tweets.get('/generate', (req, res) => {
 
 //Specific handle's tweet
 tweets.get('/:tweetId', (req, res, next) => {
-    console.log("Specific handle route");
+    console.log("Specific tweet route");
     let handle = req.handle;
     let tweetId = req.params.tweetId;
     tweet = Tweet.findById(req.params.tweetId)
         .then(tweet => {
             if(tweet !== null){
-                res.send(`${req.params.handle}: "${tweet.text}"`);
+                res.status(200);
+                res.send(tweet);
             } else {
                 res.status(404);
             }

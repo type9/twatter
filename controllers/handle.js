@@ -6,6 +6,7 @@ const tweets = require('./tweet');
 handles.get('/', (req, res, next) => {
     Handle.find()
         .then(handles => {
+            res.status(200);
             res.send(handles);
         });
 });
@@ -14,7 +15,7 @@ handles.get('/', (req, res, next) => {
 handles.use('/:handle/twatted', (req, res, next) => {
     Handle.findOne({name: req.params.handle})
         .then(handle => {
-            if (handle == null){ //handle has no tweets or doesn't exist
+            if (!handle){ //handle has no tweets or doesn't exist
                 res.status(400);
             }else {
                 next();
@@ -25,6 +26,9 @@ handles.use('/:handle/twatted', (req, res, next) => {
 //Generate new tweet from handle
 handles.use('/:handle', (req, res, next) => {
     console.log("Tweet generation routes")
+    if (req.params.handle == 'user') {
+        return;
+    }
     Handle.findOne({name: req.params.handle})
         .then(handle => {
             if(handle){ // if we already have that handle
@@ -37,6 +41,7 @@ handles.use('/:handle', (req, res, next) => {
                 newHandle
                     .save()
                     .then(newHandle => {
+                        res.status(200);
                         next();
                     });
             }

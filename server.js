@@ -34,18 +34,28 @@ if (environment !== 'production') {
 }
 
 //CONTROLLERS
-const handleRoutes = require('./controllers/handle');
 const userRoutes = require('./controllers/user');
-const authRoutes = require('./controllers/auth')
+const authRoutes = require('./controllers/auth');
+const handleRoutes = require('./controllers/handle');
+
+const unless = function(middleware, ...paths) {
+  return function(req, res, next) {
+    const pathCheck = paths.some(path => path === req.path);
+    pathCheck ? next() : middleware(req, res, next);
+  };
+};
 
 //these routes are for creating accounts
 app.use('/user', authRoutes);
 //these routes require valid API key
 app.use('/user', userRoutes);
-//these are primary feature routes
+//these are primary feature routes '/\/user/\.*/'
 app.use(handleRoutes);
+
 
 //LISTENER
 app.listen(3030, () => {
     console.log('Twatter listening on port localhost:3030');
 });
+
+module.exports = app;
