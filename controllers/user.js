@@ -11,9 +11,11 @@ let checkAuth = (req, res, next) => {
     queries = querystring.parse(url.parse(req.url).query);
     key = queries.key
     if(!key) {
+        res.code(400);
         res.send("Key missing");
     }
     if(!apikey.isAPIKey(key)){ //checks for invalid key format
+        res.code(400);
         res.send("Not a valid API key");
     }
     User.findOne({key: key})
@@ -43,7 +45,7 @@ users.get('/retweet/:tweetId', (req, res, next) => {
             tweet.retweets.addToSet(user._id);
             Promise.all([user.save(), tweet.save()])
                 .then(data => {
-                    res.status(200).end()
+                    res.status(403).end()
                 });
         })
         .catch(err => {
@@ -52,6 +54,6 @@ users.get('/retweet/:tweetId', (req, res, next) => {
 });
 
 users.get('/delete', (req, res, next) => { //TODO: Implement cascading object delete
-    res.status(403);
+    res.status(404);
 });
 module.exports = users;

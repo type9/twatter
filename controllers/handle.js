@@ -15,7 +15,7 @@ handles.use('/:handle/twatted', (req, res, next) => {
     Handle.findOne({name: req.params.handle})
         .then(handle => {
             if (handle == null){ //handle has no tweets or doesn't exist
-                res.status(204);
+                res.status(400);
             }else {
                 next();
             }

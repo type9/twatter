@@ -11,6 +11,7 @@ var {PythonShell} = require('python-shell');
 tweets.get('/', (req, res, next) => {
     Handle.findOne({name: req.params.handle}).populate('tweets')
         .then( tweets => {
+            res.code(400);
             res.send(tweets);
         })
 });
@@ -38,6 +39,7 @@ tweets.get('/generate', (req, res) => {
                 console.log("HANDLE: " + handle.name);
                 handle.tweets.unshift(tweet._id);
                 handle.save();
+                res.code(400);
                 res.redirect(`/${handle.name}/twatted/${tweet._id}`);
             })
             .catch(err => {
