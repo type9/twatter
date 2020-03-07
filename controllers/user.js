@@ -45,7 +45,7 @@ users.get('/retweets', (req, res, next) => {
 });
 
 //Retweet route
-users.get('/retweet/:tweetId', (req, res, next) => {
+users.post('/retweet/:tweetId', (req, res, next) => {
     if(req.params.tweetId == null || req.params.tweetId == undefined) {
         res.message = "Invalid tweet id";
         res.status(400).end();

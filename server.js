@@ -25,12 +25,10 @@ app.engine( 'hbs', hbs( {
     partialsDir: __dirname + '/views/partials/'
 }));
 app.set('view engine', 'handlebars');
+app.use(express.static('public'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-if (environment !== 'production') {
-    app.use(logger('dev'));
-}
 
 //CONTROLLERS
 const userRoutes = require('./controllers/user');
@@ -55,7 +53,7 @@ const port = process.env.PORT || 3000;
 
 //LISTENER
 app.listen(port, () => {
-    console.log('Twatter listening on port localhost:3030');
+    console.log('Twatter listening on port localhost:3000');
 });
 
 module.exports = app;

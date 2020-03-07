@@ -4,7 +4,7 @@ const tweets = require('./tweet');
 
 //Handle index
 handles.get('/', (req, res, next) => {
-    res.redirect("https://type9.github.io/twatter");
+    res.render("landing/index");
     // Handle.find()
     //     .then(handles => {
     //         res.status(200);
