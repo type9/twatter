@@ -51,13 +51,17 @@ tweets.get('/generate', (req, res) => {
 //Specific handle's tweet
 tweets.get('/:tweetId', (req, res, next) => {
     console.log("Specific tweet route");
-    let handle = req.handle;
+    let handle = req.params.handle;
     let tweetId = req.params.tweetId;
     tweet = Tweet.findById(req.params.tweetId)
         .then(tweet => {
             if(tweet !== null){
                 res.status(200);
-                res.send(tweet);
+                console.log(handle);
+                res.render('partials/tweet', {
+                    handle: handle,
+                    tweet: tweet.text,
+                });
             } else {
                 res.status(404);
             }

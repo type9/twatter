@@ -1,0 +1,59 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <header class="text-center pb-5">
+                    <h1 class="h2">TWATTER</h1>
+                    <p>Generated from twitter.com/{{handle}}</p>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+            <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                <div class="blockquote-custom-icon bg-info shadow-sm"><h2 class="mt-2"><i class="fa fa-twitter text-white"></i></h2></div>
+                <p class="mb-0 mt-2 font-italic">"{{tweet}}"</p>
+                <footer class="blockquote-footer pt-4 mt-4 border-top">
+                    <cite title="Source Title">{{handle}}</cite>
+                </footer>
+            </blockquote>
+            <button type="button" class="btn btn-outline-info btn-lg btn-block" onclick="window.location = '/{{handle}}/generate'"><span class="fa fa-refresh"></span> Generate New Tweet</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+body {
+    background: #eff0eb;
+    background-image: url('https://i.postimg.cc/MTbfnkj6/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.blockquote-custom {
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.blockquote-custom-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -25px;
+    left: 50px;
+}
+</style>
