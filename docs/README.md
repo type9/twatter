@@ -7,7 +7,7 @@ fake twitter for fake tweets
 
 Twatter is an app that tries to replicate speech patterns through generating a new tweet from a given Twitter handle.
 
-**Does this really work?**... Sorta. You need to give it a twitter handle that has a lot of Tweets. If there aren't too many Tweets there's a high chance that the site will just return a copy of a tweet
+**FYI on Usage**... You need to give it a twitter handle that has a lot of Tweets. If there aren't too many Tweets there's a high chance that the site will just return a copy of a tweet
 
 ---
 ## API
