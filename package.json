@@ -28,7 +28,7 @@
     "express-unless": "^0.5.0",
     "express-validator": "^6.4.0",
     "express-handlebars": "^3.1.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.2",
     "python-shell": "^1.0.8",
     "uuid-apikey": "^1.4.6"
